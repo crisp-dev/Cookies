@@ -23,7 +23,7 @@
         // Used to ensure cookie keys do not collide with
         // built-in `Object` properties
         Cookies._cacheKeyPrefix = 'cookey.'; // Hurr hurr, :)
-        
+
         Cookies._maxExpireDate = new Date('Fri, 31 Dec 9999 23:59:59 UTC');
 
         Cookies.defaults = {
@@ -36,7 +36,7 @@
             if (Cookies._cachedDocumentCookie !== Cookies._document.cookie) {
                 Cookies._renewCache();
             }
-            
+
             var value = Cookies._cache[Cookies._cacheKeyPrefix + key];
 
             return value === undefined ? undefined : decodeURIComponent(value);
@@ -91,6 +91,9 @@
             switch (sameSite) {
                 case undefined:
                     return '';
+                case 'None':
+                case 'none':
+                    return ';sameSite=None';
                 case 'Lax':
                 case 'lax':
                     return ';sameSite=Lax';
@@ -98,7 +101,7 @@
                 case 'strict':
                     return ';sameSite=Strict';
                 default:
-                    throw new TypeError(sameSite + ' is not valid value for option "sameSite"'); 
+                    throw new TypeError(sameSite + ' is not valid value for option "sameSite"');
             }
         }
 
@@ -149,7 +152,7 @@
                     console.error('Could not decode cookie with key "' + key + '"', e);
                 }
             }
-            
+
             return {
                 key: decodedKey,
                 value: cookieString.substr(separatorIndex + 1) // Defer decoding value until accessed

@@ -156,15 +156,6 @@
             Cookies._cachedDocumentCookie = Cookies._document.cookie;
         };
 
-        Cookies._areEnabled = function () {
-            var testKey = 'cookies.js';
-            var areEnabled = Cookies.set(testKey, 1).get(testKey) === '1';
-            Cookies.expire(testKey);
-            return areEnabled;
-        };
-
-        Cookies.enabled = Cookies._areEnabled();
-
         return Cookies;
     };
     var cookiesExport = (global && typeof global.document === 'object') ? factory(global) : factory;

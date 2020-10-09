@@ -97,7 +97,7 @@
                 case 'strict':
                     return ';sameSite=Strict';
                 default:
-                    throw new TypeError(sameSite + ' is not valid value for option "sameSite"');
+                    throw new TypeError('Invalid sameSite');
             }
         }
 

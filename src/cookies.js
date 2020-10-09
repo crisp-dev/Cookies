@@ -143,9 +143,7 @@
             var decodedKey;
             try {
                 decodedKey = decodeURIComponent(key);
-            } catch () {
-                // Ignore
-            }
+            } catch (e) {}
 
             return {
                 key: decodedKey,

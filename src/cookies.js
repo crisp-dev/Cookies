@@ -8,10 +8,6 @@
     'use strict';
 
     var factory = function (window) {
-        if (typeof window.document !== 'object') {
-            throw new Error('Cookies.js requires a `window` with a `document` object');
-        }
-
         var Cookies = function (key, value, options) {
             return arguments.length === 1 ?
                 Cookies.get(key) : Cookies.set(key, value, options);
@@ -80,7 +76,7 @@
             }
 
             if (expires && !Cookies._isValidDate(expires)) {
-                throw new Error('`expires` parameter cannot be converted to a valid Date instance');
+                throw new Error('Invalid expires');
             }
 
             return expires;
